@@ -64,3 +64,43 @@ input[type="range"]::-webkit-slider-runnable-track {
     /* Añade bordes redondeados al riel */
     border-radius: 5px;
   }
+  /*Ventana emergente detallando la cuenta*/
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.popup-logo{
+    text-align: center;   
+}
+
+.logo{
+	width: 200px;
+	height: 200px;
+}
+
+.popup-contenido {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#cerrarVentana {
+    background-color: #ff5733;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
