@@ -15,3 +15,33 @@ document.getElementById("botonCalcular").addEventListener("click", function() {
     document.getElementById("resultadoPropinaVentana").textContent = propina.toFixed(2);
     document.getElementById("resultadoTotalVentana").textContent = totalPagar.toFixed(2);
 });
+
+//Acciones de la ventana emergente
+const mostrarVentana = document.getElementById("botonCalcular");
+const cerrarVentana = document.getElementById("cerrarVentana");
+const ventanaEmergente = document.getElementById("ventanaEmergente");
+
+mostrarVentana.addEventListener("click", () => {
+    ventanaEmergente.style.display = "block";
+});
+
+cerrarVentana.addEventListener("click", () => {
+    ventanaEmergente.style.display = "none";
+	
+	// Borrar el contenido de los campos de entrada
+    var input = document.getElementById("costo");
+    input.value = "";
+    var input = document.getElementById("porcentaje");
+    input.value = "";
+	document.getElementById("resultadoPropina").textContent = "0.00";
+    document.getElementById("resultadoTotal").textContent = "0.00";
+    document.getElementById("porcentajePropina").textContent = "15";
+});
+
+//Para ver la funcion del Range
+const rangoPropina = document.getElementById("porcentaje");
+const porcentajePropina = document.getElementById("porcentajePropina");
+
+rangoPropina.addEventListener("input", () => {
+	porcentajePropina.textContent = rangoPropina.value;
+});
