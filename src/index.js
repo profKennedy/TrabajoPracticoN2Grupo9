@@ -1,47 +1,36 @@
-document.getElementById("botonCalcular").addEventListener("click", function() {
-    var costoC = Number(document.getElementById("costo").value);
-    var porcentajeP = Number(document.getElementById("porcentaje").value);
+let products = []; //matriz vacia
+let probarato = [];
 
-    var propina = (costoC * (porcentajeP*0.01));
-    var totalPagar = costoC + propina;
+document.getElementById("botonGuardar").addEventListener("click", function () {
+    const nombre = document.getElementById("nombre").value;
+    const precio =  parseFloat(document.getElementById("precio").value);
+    const comercio = document.getElementById("comercio").value;
 
-    // Asigna valores al span 
-    document.getElementById("resultadoPropina").textContent = propina; //toFixed redondea a 2 decimales
-    document.getElementById("resultadoTotal").textContent = totalPagar;
-
-    // Asigna valores al span en la ventana emergente
-    document.getElementById("compraVentana").textContent = costoC;
-    document.getElementById("porcentajeVentana").textContent = porcentajeP;
-    document.getElementById("resultadoPropinaVentana").textContent = propina.toFixed(2);
-    document.getElementById("resultadoTotalVentana").textContent = totalPagar.toFixed(2);
+    if(nombre && !isNaN(precio) && comercio){
+        const objproducto = {nombre, precio ,comercio}; //creo un objeto con tales propiedades
+        products.push(objproducto);
+        document.getElementById("formProducto").reset(); //los campos se borran.
+        alert("Producto guardado exitosamente.");
+    }else{
+        alert("Por favor, completa todos los campos correctamente.");
+    }
 });
 
-//Acciones de la ventana emergente
-const mostrarVentana = document.getElementById("botonCalcular");
-const cerrarVentana = document.getElementById("cerrarVentana");
-const ventanaEmergente = document.getElementById("ventanaEmergente");
 
-mostrarVentana.addEventListener("click", () => {
-    ventanaEmergente.style.display = "block";
-});
-
-cerrarVentana.addEventListener("click", () => {
-    ventanaEmergente.style.display = "none";
-	
-	// Borrar el contenido de los campos de entrada
-    var input = document.getElementById("costo");
-    input.value = "";
-    var input = document.getElementById("porcentaje");
-    input.value = "";
-	document.getElementById("resultadoPropina").textContent = "0.00";
-    document.getElementById("resultadoTotal").textContent = "0.00";
-    document.getElementById("porcentajePropina").textContent = "15";
-});
-
-//Para ver la funcion del Range
-const rangoPropina = document.getElementById("porcentaje");
-const porcentajePropina = document.getElementById("porcentajePropina");
-
-rangoPropina.addEventListener("input", () => {
-	porcentajePropina.textContent = rangoPropina.value;
+document.getElementById("botonListar").addEventListener("click", ()=> {
+    
+    const listaCompleta = document.getElementById("listaProductos"); //obtenemos una referencia ubicacion del tbody
+    listaCompleta.innerHTML = ""; //se limpia la tabla para mostrar los valores actualizados
+    
+    products.forEach(function(producto){
+        
+        const row = document.createElement("tr"); //crea un nuevo elemento de fila
+        row.innerHTML = `
+            <td>${producto.nombre}</td>
+            <td>${producto.precio}</td>
+            <td>${producto.comercio}</td>
+        `;
+        // agrega la fila a la tabla
+        listaCompleta.appendChild(row); //la fila recién creada se agrega como un hijo del elemento,
+    });
 });
